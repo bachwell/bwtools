@@ -1,0 +1,21 @@
+[package]
+name = "bwtools-rs"
+version = "0.1.0"
+edition = "2024"
+license = "Apache-2.0"
+authors = ["Pavlo Bacha <bachwell@gmail.com>"]
+description = "tools"
+categories = ["lib"]
+keywords = ["folder", "log"]
+
+[dependencies]
+chrono = "0.4.45"
+directories = "6.0.0"
+log = { version = "0.4", features = ["std"] }
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = "s"
+strip = true
