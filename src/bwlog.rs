@@ -61,14 +61,6 @@ impl log::Log for SimpleLogger {
     fn flush(&self) {}
 }
 
-// static LOGGER: SimpleLogger = SimpleLogger::new();
-
-// pub fn init_log() -> Result<(), log::SetLoggerError> {
-// log::set_logger(&LOGGER).map(|()| log::set_max_level(log::LevelFilter::Trace))
-// log::set_max_level(log::LevelFilter::Trace);
-// log::set_logger(&LOGGER)
-// }
-
 trait LevelColor {
     fn color(&self) -> String;
 }
@@ -85,27 +77,6 @@ impl LevelColor for log::Level {
         .replace("\"", "")
     }
 }
-
-// trait IsMyApp {
-//     fn is_my_app(&self) -> bool;
-//
-//     fn check_name(&self, name: &str) -> bool {
-//         true
-//         // name.starts_with(APP_NAME)
-//     }
-// }
-//
-// impl IsMyApp for log::Metadata<'_> {
-//     fn is_my_app(&self) -> bool {
-//         self.check_name(self.target())
-//     }
-// }
-//
-// impl IsMyApp for log::Record<'_> {
-//     fn is_my_app(&self) -> bool {
-//         self.check_name(self.target())
-//     }
-// }
 
 /*
 
