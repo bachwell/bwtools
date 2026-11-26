@@ -1,7 +1,7 @@
 mod bwlog;
 mod dirs;
 
-pub use crate::bwlog::Builder;
+pub use crate::bwlog::LogBuilder;
 
 pub use crate::dirs::ApplicationDirs;
 

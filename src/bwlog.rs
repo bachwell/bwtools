@@ -1,10 +1,10 @@
 #![allow(dead_code)]
 
-pub struct Builder {
+pub struct LogBuilder {
     filter: Vec<String>,
 }
 
-impl Builder {
+impl LogBuilder {
     pub fn new() -> Self {
         Self { filter: Vec::new() }
     }
@@ -39,7 +39,12 @@ impl SimpleLogger {
 
 impl log::Log for SimpleLogger {
     fn enabled(&self, metadata: &log::Metadata) -> bool {
-        if !self.filter.is_empty() && !self.filter.contains(&metadata.target().to_string()) {
+        let pkg_path = metadata.target();
+        let pkg_name: String = pkg_path
+            .split_once("::")
+            .map_or(pkg_path, |(m, _)| m)
+            .into();
+        if !self.filter.is_empty() && !self.filter.contains(&pkg_name) {
             return false;
         }
         metadata.level() <= log::Level::Trace
